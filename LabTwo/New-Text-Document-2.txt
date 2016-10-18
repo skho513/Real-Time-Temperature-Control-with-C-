@@ -1,0 +1,35 @@
+// At the top:
+        // %%%%%%%%%%%%%%%ADDD TO
+        AveragingFilter filter0 = new AveragingFilter();
+        AveragingFilter filter1 = new AveragingFilter();
+        AveragingFilter filter2 = new AveragingFilter();
+        // %%%%%%%%%%%%%%%%%%%%%%%%%
+
+// At the bottom:
+        public void NumberOfPointAverager(int num)
+        {
+            filter0.Set_NumPoint(num);
+            filter1.Set_NumPoint(num);
+            filter2.Set_NumPoint(num);
+        }
+
+        public double ReadData(int REF)
+        {
+
+            if (REF == 0)
+            {
+                filter0.AddToList(reader0.ReadSingleSample());  // Adds new data value to list.
+                return filter0.Get_Average();
+            }
+            else if (REF == 1)
+            {
+                filter1.AddToList(reader1.ReadSingleSample());  // Adds new data value to list.
+                return filter1.Get_Average();
+            }
+            else
+            {
+                filter2.AddToList(reader2.ReadSingleSample());  // Adds new data value to list.
+                return filter2.Get_Average();
+            }
+        }
+
